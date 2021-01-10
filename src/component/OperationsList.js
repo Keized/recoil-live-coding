@@ -6,11 +6,19 @@ export default function OperationsList () {
     const operations = useRecoilValue(filteredOperations)
     const total = useRecoilValue(filteredOperationsTotal);
 
-    return <div className="list-group list-group-flush">
-        {operations.map((op) => <OperationItem key={op.id} {...op} />)}
+    return <div className="col">
+        <div className="card">
+            <div className="card-header">
+                Operations
+            </div>
+            <div className="list-group list-group-flush">
+                {operations.map((op) => <OperationItem key={op.id} {...op} />)}
 
-        <div className="list-group-item ">
-            total: {total}
+                <div className="list-group-item d-flex justify-content-between">
+                    total: {total}
+                </div>
+            </div>
         </div>
     </div>
+
 }

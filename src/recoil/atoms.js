@@ -1,3 +1,6 @@
+import { atomFamily } from 'recoil';
+import { operationDetailsQuery } from './selectors';
+
 const {atom} = require('recoil');
 
 export const operations = atom({
@@ -5,14 +8,14 @@ export const operations = atom({
     default: [
         {
             id: 1,
-            label: 'Salaire',
-            amount: 300.5,
+            label: 'Solde',
+            amount: 2984.87,
             credit: true
         },
         {
-            id: 2,
-            label: 'Leclerc',
-            amount: 30.4,
+            id: 3,
+            label: 'Courses Leclerc',
+            amount: 155.9,
             credit: false
         }
     ]
@@ -22,3 +25,13 @@ export const filters = atom({
     key: 'operations-filters-state',
     default: {}
 });
+
+export const selectedOperationState = atom({
+    key: 'selected-operation-state',
+    default: null
+});
+
+export const operationDetailsState = atomFamily({
+    key: 'operation-details-state',
+    default: ''
+})

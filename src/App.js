@@ -3,32 +3,24 @@ import 'bootstrap/dist/css/bootstrap.css';
 import OperationsList from './component/OperationsList';
 import { RecoilRoot } from 'recoil';
 import OperationEditor from './component/OperationEditor';
+import OperationDetails from './component/OperationDetails';
 
 function App() {
-  return (
-    <div id="App" className="container">
-        <RecoilRoot>
-            <div className="row mt-4">
-                <div className="col">
-                    <div className="card">
-                        <div className="card-header">
-                            Operations
-                        </div>
+    return (
+        <div id="App" className="py-4 min-vh-100" style={{'background': '#F1F1FA'}}>
+            <RecoilRoot>
+                <div className="container">
+                    <div className="row mb-4">
                         <OperationsList />
+                        <OperationDetails />
                     </div>
-                </div>
-                <div className="col">
-                    <div className="card">
-                        <div className="card-header">
-                            Add Operation
-                        </div>
+                    <div className="row mb-4">
                         <OperationEditor />
                     </div>
                 </div>
-            </div>
-        </RecoilRoot>
-    </div>
-  );
+            </RecoilRoot>
+        </div>
+    );
 }
 
 export default App;

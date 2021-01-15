@@ -1,7 +1,4 @@
-import { atomFamily } from 'recoil';
-import { operationDetailsQuery } from './selectors';
-
-const {atom} = require('recoil');
+import { atomFamily, atom } from 'recoil';
 
 export const operations = atom({
     key: 'operations-state',

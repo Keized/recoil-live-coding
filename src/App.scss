@@ -1,0 +1,42 @@
+#editor-sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: translate3d(100%, 0, 0);
+    width: 300px;
+    transition: transform .3s;
+}
+
+#editor-sidebar.open{
+    transform: translate3d(0,0,0);
+}
+
+#App {
+    background: linear-gradient(#1e1e2f,#1e1e24);
+}
+
+
+$ghost: #FFFFFF90;
+
+$card-cap-color: white;
+$card-bg : #27293d;
+
+$input-bg: transparent;
+$input-color: $ghost;
+$input-border-color: #2b3553;
+$border-radius: 1rem;
+$primary: #9000a9;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.card {
+    color: $ghost;
+}
+
+.form-select option {
+    background: #2b3553;
+    color: $ghost;
+}

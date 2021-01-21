@@ -18,9 +18,9 @@ export const operations = atom({
     ]
 });
 
-export const filters = atom({
-    key: 'operations-filters-state',
-    default: {}
+export const filterState = atom({
+    key: 'operations-filter-state',
+    default: ''
 });
 
 export const selectedOperationState = atom({
@@ -28,7 +28,7 @@ export const selectedOperationState = atom({
     default: null
 });
 
-export const operationDetailsState = atomFamily({
-    key: 'operation-details-state',
-    default: ''
+export const operationsDetailsRequestIdState = atomFamily({
+    key: 'operation-details-request-id-state',
+    default: 0
 })

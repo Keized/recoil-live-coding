@@ -1,15 +1,16 @@
 import { useSetRecoilState } from 'recoil';
 import { selectedOperationState } from '../recoil/atoms';
+import ListItem from '../UI/ListItem'
 
 export default function OperationItem ({id, amount, label, credit = false}) {
     const setSelected = useSetRecoilState(selectedOperationState);
 
-    return <div className={`list-group-item justify-content-between ${credit ? 'list-group-item-success' : 'list-group-item-danger'}`} onClick={() => setSelected(id)}>
+    return <ListItem onClick={() => setSelected(id)}>
         <div>
             {label}
         </div>
-        <div>
+        <div className={credit ? 'text-success' : 'text-danger'}>
             {credit ? amount : `-${amount}`}
         </div>
-    </div>
+    </ListItem>
 }

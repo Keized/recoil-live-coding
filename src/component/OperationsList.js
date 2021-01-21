@@ -1,24 +1,22 @@
 import { useRecoilValue } from 'recoil';
 import OperationItem from './OperationsItem';
-import { filteredOperations, filteredOperationsTotal } from '../recoil/selectors';
+import { filteredOperations } from '../recoil/selectors';
+import ListGroup from '../UI/ListGroup';
+import Card from '../UI/Card';
+import OperationsTotal from './OperationsTotal';
+import OperationFilter from './OperationFilter';
 
 export default function OperationsList () {
     const operations = useRecoilValue(filteredOperations)
-    const total = useRecoilValue(filteredOperationsTotal);
 
     return <div className="col">
-        <div className="card">
-            <div className="card-header">
-                Operations
-            </div>
-            <div className="list-group list-group-flush">
+        <Card title="Operations">
+            <OperationFilter />
+            <ListGroup>
                 {operations.map((op) => <OperationItem key={op.id} {...op} />)}
-
-                <div className="list-group-item d-flex justify-content-between">
-                    total: {total}
-                </div>
-            </div>
-        </div>
+                <OperationsTotal />
+            </ListGroup>
+        </Card>
     </div>
 
 }

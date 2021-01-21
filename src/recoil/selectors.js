@@ -1,17 +1,14 @@
-import { atomFamily, selector, selectorFamily } from 'recoil';
-import { operations as operationsState, filters as filtersState, operationDetailsState } from './atoms';
+import { selector, selectorFamily } from 'recoil';
+import { operations as operationsState, filterState, operationsDetailsRequestIdState } from './atoms';
 import { v4 } from 'uuid';
 
 export const filteredOperations = selector({
     key: 'filtered-operations-state',
     get: ({ get }) => {
-        const filters = get(filtersState);
+        const filter = get(filterState);
         const operations = get(operationsState);
         return operations.filter((op) => {
-            if (filters.hasOwnProperty('credit')) {
-                return op.credit === filters.credit;
-            }
-            return true;
+            return op.label.startsWith(filter)
         });
     }
 });
@@ -21,7 +18,7 @@ export const filteredOperationsTotal = selector({
     get: ({ get }) => {
         const operations = get(filteredOperations);
         return operations.reduce((acc, op) => {
-            return op.credit ? acc + op.amount : acc - op.amount;
+            return op.credit ? acc + parseFloat(op.amount) : acc - parseFloat(op.amount);
         }, 0)
     }
 })
@@ -46,7 +43,10 @@ export const operationSelector = selectorFamily({
 
 export const operationDetailsQuery = selectorFamily({
     key: 'operation-details-query',
-    get: (param) => async ({get}) => {
+    get: (param) => async ({ get }) => {
+        // trigger this function when the request id changes
+        get(operationsDetailsRequestIdState(param));
+
         if (!param) {
             return 'Select an operation'
         }

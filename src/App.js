@@ -9,12 +9,14 @@ function App() {
         <div id="App" className="min-vh-100">
             <RecoilRoot>
                 <main>
-                    <div className="container">
+                    <div className="container p-3">
+                            <h1>Gérance de sous</h1>
+                        <hr/>
                         <div className="row mb-4">
                             <OperationsList />
-                            <OperationDetails />
                         </div>
                         <div className="row mb-4">
+                            <OperationDetails />
                             <OperationEditor />
                         </div>
                     </div>

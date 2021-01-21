@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { operationEditor } from '../recoil/atoms';
+import { useSetRecoilState } from 'recoil';
 import { operationSelector } from '../recoil/selectors';
+import Switch from '../UI/Switch';
+import Input from '../UI/Input';
+import Card from '../UI/Card';
 
 const defaultOperation = {amount: 0, credit: true, label: ''};
 
@@ -20,43 +22,20 @@ export default function OperationEditor() {
     }
 
     const onChange = (name, value) => {
-        if (name === 'credit') {
-            value = value === '1';
-        }
-        if (name === 'amount') {
-            value = parseFloat(value);
-        }
-
         setEditedOperation((prev) => ({...prev, [name]: value}))
     }
 
     return <div className="col">
-        <div className="card">
-            <div className="card-header">
-                Add Operation
-            </div>
-
+        <Card title="Add Operation">
             <form className="p-3" onSubmit={save} id="add-form">
-                <div className="mb-3">
-                    <div className="form-label">Credit</div>
-                    <select className="form-select" value={editedOperation.credit ? '1': '0'} onChange={(e) => {onChange('credit', e.target.value)}}>
-                        <option value="0">False</option>
-                        <option value="1">True</option>
-                    </select>
-                </div>
-                <div className="mb-3">
-                    <div className="form-label">Label</div>
-                    <input className="form-control" required value={editedOperation.label} onChange={(e) => {onChange('label', e.target.value)}} />
-                </div>
-                <div className="mb-3">
-                    <div className="form-label">Amount</div>
-                    <input className="form-control" required type="number" value={editedOperation.amount} onChange={(e) => {onChange('amount', e.target.value)}} />
-                </div>
+                <Switch  name="Credit" checked={editedOperation.credit} onChange={(e) => {onChange('credit', e.target.checked)}} />
+                <Input name="Label" onChange={(e) => onChange('label', e.target.value)} value={editedOperation.label} />
+                <Input name="Amount" type="number" onChange={(e) => onChange('amount', e.target.value)} value={editedOperation.amount} />
             </form>
             <div className="card-footer d-flex justify-content-end">
-                <button className="primary btn btn-danger mx-3" onClick={reset} type="button">Reset</button>
-                <button className="primary btn btn-primary" type="submit" form="add-form">Save</button>
+                <button className="primary btn btn-outline-dark mx-3" onClick={reset} type="button">Reset</button>
+                <button className="primary btn btn-outline-primary" type="submit" form="add-form">Save</button>
             </div>
-        </div>
+        </Card>
     </div>
 }

@@ -1,28 +1,24 @@
 import './App.scss';
-import OperationsList from './component/OperationsList';
 import { RecoilRoot } from 'recoil';
-import OperationEditor from './component/OperationEditor';
-import OperationDetails from './component/OperationDetails';
 
 function App() {
     return (
-        <div id="App" className="min-vh-100">
-            <RecoilRoot>
+        <RecoilRoot>
+            <div id="App" className="min-vh-100">
                 <main>
                     <div className="container p-3">
-                            <h1>Gérance de sous</h1>
+                        <h1>My bank manager</h1>
                         <hr/>
-                        <div className="row mb-4">
-                            <OperationsList />
+                        <div className="row p-3">
                         </div>
-                        <div className="row mb-4">
-                            <OperationDetails />
-                            <OperationEditor />
+                        <div className="row p-3">
+                        </div>
+                        <div className="row p-3">
                         </div>
                     </div>
                 </main>
-            </RecoilRoot>
-        </div>
+            </div>
+        </RecoilRoot>
     );
 }
 

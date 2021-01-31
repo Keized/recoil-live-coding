@@ -1,9 +1,9 @@
 import { selector, selectorFamily } from 'recoil';
-import { operations as operationsState, filterState, operationsDetailsRequestIdState } from './atoms';
+import { operationsState, filterState, operationsDetailsRequestIdState } from './atoms';
 import { v4 } from 'uuid';
 
 export const filteredOperations = selector({
-    key: 'filtered-operations-state',
+    key: 'filtered-operations',
     get: ({ get }) => {
         const filter = get(filterState);
         const operations = get(operationsState);
@@ -14,7 +14,7 @@ export const filteredOperations = selector({
 });
 
 export const filteredOperationsTotal = selector({
-    key: 'filtered-operations-total-state',
+    key: 'filtered-operations-total',
     get: ({ get }) => {
         const operations = get(filteredOperations);
         return operations.reduce((acc, op) => {
@@ -32,26 +32,12 @@ export const operationSelector = selectorFamily({
         }) || {};
     },
     set: (param) => ({get, set}, newValue) => {
+        const operations = get(operationsState);
         if (param) {
             // todo edit
         } else {
-            const operations = get(operationsState);
             set(operationsState, [...operations, {...newValue, id: v4()}])
         }
     }
 })
 
-export const operationDetailsQuery = selectorFamily({
-    key: 'operation-details-query',
-    get: (param) => async ({ get }) => {
-        // trigger this function when the request id changes
-        get(operationsDetailsRequestIdState(param));
-
-        if (!param) {
-            return 'Select an operation'
-        }
-        // use param as an url param
-        const response = await fetch('https://hipsum.co/api/?type=hipster-latin&sentences=1');
-        return await response.json();
-    }
-})

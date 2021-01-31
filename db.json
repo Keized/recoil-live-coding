@@ -1,0 +1,16 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "label": "Solde",
+      "amount": 2984.87,
+      "credit": true
+    },
+    {
+      "id": 3,
+      "label": "Courses Leclerc",
+      "amount": 155.9,
+      "credit": false
+    }
+  ]
+}

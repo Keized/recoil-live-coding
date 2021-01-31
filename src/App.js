@@ -1,8 +1,9 @@
 import './App.scss';
+import { Suspense } from 'react';
 import OperationsList from './component/OperationsList';
 import { RecoilRoot } from 'recoil';
 import OperationEditor from './component/OperationEditor';
-import OperationDetails from './component/OperationDetails';
+import ListGroup from './UI/ListGroup';
 
 function App() {
     return (
@@ -10,14 +11,15 @@ function App() {
             <RecoilRoot>
                 <main>
                     <div className="container p-3">
-                            <h1>Gérance de sous</h1>
+                        <h1>Gérance de sous</h1>
                         <hr/>
-                        <div className="row mb-4">
-                            <OperationsList />
-                        </div>
-                        <div className="row mb-4">
-                            <OperationDetails />
-                            <OperationEditor />
+                        <div className="row">
+                            <div className="col mb-4">
+                                <OperationsList />
+                            </div>
+                            <div className="col mb-4">
+                                <OperationEditor />
+                            </div>
                         </div>
                     </div>
                 </main>

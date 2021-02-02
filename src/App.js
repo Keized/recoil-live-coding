@@ -1,9 +1,7 @@
 import './App.scss';
-import { Suspense } from 'react';
 import OperationsList from './component/OperationsList';
 import { RecoilRoot } from 'recoil';
 import OperationEditor from './component/OperationEditor';
-import ListGroup from './UI/ListGroup';
 
 function App() {
     return (
